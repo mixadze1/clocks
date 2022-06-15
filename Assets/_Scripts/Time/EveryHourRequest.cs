@@ -12,7 +12,6 @@ public class EveryHourRequest : MonoBehaviour
         float hour = 0;
         while (hour <= 3600)
         {
-            Debug.Log(hour);
             yield return new WaitForSecondsRealtime(1);
             hour++;
         }

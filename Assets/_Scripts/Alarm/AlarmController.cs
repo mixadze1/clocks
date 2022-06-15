@@ -131,7 +131,7 @@ public class AlarmController : MonoBehaviour
     {
         try
         {
-            int checkInt = int.Parse(fieldTextHour.text);
+                int checkInt = int.Parse(fieldTextHour.text);    
         }
         catch (System.Exception)
         {
@@ -166,7 +166,7 @@ public class AlarmController : MonoBehaviour
     {    
         try
         {
-           int checkInt = int.Parse(fieldTextMinute.text);
+                int checkInt = int.Parse(fieldTextMinute.text);
         }
         catch (System.Exception)
         {
