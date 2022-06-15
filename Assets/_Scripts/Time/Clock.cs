@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using MyTime;
+
 public class Clock : MonoBehaviour
 {
     [SerializeField] private RequestRealTime requestRealTime;
@@ -49,7 +49,6 @@ public class Clock : MonoBehaviour
             minute = PlayerPrefs.GetInt(MyTime.Real.MINUTE);
             second = PlayerPrefs.GetInt(MyTime.Real.SECOND);
         }
-       
     }
 
     IEnumerator WaitingSecond()

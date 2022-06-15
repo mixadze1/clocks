@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using MyTime;
-using System;
 
 public class AlarmActivate : MonoBehaviour
 {

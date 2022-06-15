@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using MyTime;
+
 public class RequestRealTime : MonoBehaviour
 {
     [SerializeField] private Clock clock;
@@ -33,25 +34,25 @@ public class RequestRealTime : MonoBehaviour
 
         if (webReq != null)
         {
-            ServerRequest(webReq);
+            ParseTime(webReq);
         }
         else
         {
             UnityWebRequest webReq2 = UnityWebRequest.Get(url2);
             yield return webReq2.SendWebRequest();
-            ServerRequest(webReq);
+            ParseTime(webReq);
         }
     }
 
-    private void ServerRequest(UnityWebRequest webReq)
+    private void ParseTime(UnityWebRequest webReq)
     {
         response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
         var dateTime = DateTime.Parse(response.datetime);
         SaveTime(dateTime.Hour, dateTime.Minute, dateTime.Second); 
-        HourRequest();
+        EveryHourRequest();
     }
 
-    private void HourRequest()
+    private void EveryHourRequest()
     {
         if (hourRequest.PrepareRoutine != null)
         {
