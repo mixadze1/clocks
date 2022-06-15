@@ -26,8 +26,10 @@ public class AlarmController : MonoBehaviour
     private bool alarmActive;
     public bool AlarmActive { get => alarmActive; set => alarmActive = value; }
 
-    public void Init()
+    public void Awake()
     {
+        fieldTextHour.text = "ded";
+        fieldTextMinute.text = 0.ToString();
         hourText.text = "00";
         minutesText.text = "00";
     }
