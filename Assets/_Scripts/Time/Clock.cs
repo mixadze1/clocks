@@ -42,9 +42,14 @@ public class Clock : MonoBehaviour
     }
     public void TimeCheck()
     {
-        hour = PlayerPrefs.GetInt(MyTime.Real.HOUR);
-        minute = PlayerPrefs.GetInt(MyTime.Real.MINUTE);
-        second = PlayerPrefs.GetInt(MyTime.Real.SECOND);
+        if (hour != PlayerPrefs.GetInt(MyTime.Real.HOUR) || minute != PlayerPrefs.GetInt(MyTime.Real.MINUTE)||
+            second != PlayerPrefs.GetInt(MyTime.Real.SECOND))
+        {
+            hour = PlayerPrefs.GetInt(MyTime.Real.HOUR);
+            minute = PlayerPrefs.GetInt(MyTime.Real.MINUTE);
+            second = PlayerPrefs.GetInt(MyTime.Real.SECOND);
+        }
+       
     }
 
     IEnumerator WaitingSecond()

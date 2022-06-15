@@ -46,12 +46,8 @@ public class RequestRealTime : MonoBehaviour
     private void ServerRequest(UnityWebRequest webReq)
     {
         response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
-
         var dateTime = DateTime.Parse(response.datetime);
-        if (dateTime != null)
-        { 
-            SaveTime(dateTime.Hour, dateTime.Minute, dateTime.Second); 
-        }
+        SaveTime(dateTime.Hour, dateTime.Minute, dateTime.Second); 
         HourRequest();
     }
 
