@@ -1,5 +1,5 @@
 [System.Serializable]
 public struct Response
 {
-    public string datetime;
+    public string currentDateTime;
 }

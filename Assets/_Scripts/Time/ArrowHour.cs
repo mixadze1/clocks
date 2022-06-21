@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HourArrow : MonoBehaviour
+public class ArrowHour : MonoBehaviour
 {
     [SerializeField] private Transform _objectHour;
     [SerializeField] private Clock _realTime;

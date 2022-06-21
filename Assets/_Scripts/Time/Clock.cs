@@ -6,9 +6,9 @@ public class Clock : MonoBehaviour
 {
 
     [SerializeField] private DigitalClock _digitalClock;
-    [SerializeField] private HourArrow _hourArrow;
-    [SerializeField] private MinuteArrow _minuteArrow;
-    [SerializeField] private SecondArrow _secondArrow;
+    [SerializeField] private ArrowHour _hourArrow;
+    [SerializeField] private ArrowMinute _minuteArrow;
+    [SerializeField] private ArrowSecond _secondArrow;
 
     [SerializeField] private AlarmActivate _alarmActivate;
     [SerializeField] private Alarm _alarm;

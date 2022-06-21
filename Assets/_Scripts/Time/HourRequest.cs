@@ -24,6 +24,6 @@ public class HourRequest : MonoBehaviour
             hour++;
         }
         _requestTime.StopCoroutine(_requestTime.PrepareRoutine);
-        _requestTime.PrepareRoutine = StartCoroutine(_requestTime.RequestTime(_requestTime.UrlFirst, _requestTime.UrlSecond));
+        _requestTime.PrepareRoutine = StartCoroutine(_requestTime.RequestTime(_requestTime.Urls));
     }
 }

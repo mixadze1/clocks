@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,42 +9,37 @@ public class RequestTimeStart : MonoBehaviour
     [SerializeField] private Clock _clock;
     [SerializeField] private HourRequest _hourRequest;
 
-    private string _urlFirst = "http://worldtimeapi.org/api/timezone/Europe/Moscow";
-    private string _urlSecond = "https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Moscow";
+    [SerializeField] private List<string> _urls;
     private Response _response;
 
     public Coroutine PrepareRoutine;
 
-    public string UrlFirst => _urlFirst;
-    public string UrlSecond => _urlSecond;
+    public List<string> Urls => _urls;
 
     public void Start()
     {
         _clock.Init();
-        PrepareRoutine = StartCoroutine(RequestTime(_urlFirst,_urlSecond));
+        PrepareRoutine = StartCoroutine(RequestTime(_urls));
     }
 
-    public IEnumerator RequestTime(string url, string url2)
+    public IEnumerator RequestTime(List<string> urls)
     {
-        UnityWebRequest webReq = UnityWebRequest.Get(url);
-        yield return webReq.SendWebRequest();
-
-        if (webReq != null)
+        foreach( string url in urls)
         {
-            ParseRequest(webReq);
-        }
-        else
-        {
-            UnityWebRequest webReq2 = UnityWebRequest.Get(url2);
-            yield return webReq2.SendWebRequest();
-            ParseRequest(webReq);
+            UnityWebRequest webReq = UnityWebRequest.Get(url);
+            yield return webReq.SendWebRequest();
+            if (webReq != null)
+            {
+                ParseRequest(webReq);
+                break;
+            }
         }
     }
 
     private void ParseRequest(UnityWebRequest webReq)
     {
         _response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
-        var dateTime = DateTime.Parse(_response.datetime);
+        var dateTime = DateTime.Parse(_response.currentDateTime);
         _clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
         _hourRequest.EveryHourRequest();
     }

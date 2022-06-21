@@ -1451,9 +1451,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clock: {fileID: 295034459}
   _hourRequest: {fileID: 2017104936}
-  RealHour: 0
-  RealMinute: 0
-  RealSecond: 0
+  _urls:
+  - http://worldclockapi.com/api/json/est/now
+  - http://worldclockapi.com/api/json/utc/now
+  - http://worldtimeapi.org/api/timezone/Europe/Moscow
+  - https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Moscow
 --- !u!4 &410563284
 Transform:
   m_ObjectHideFlags: 0

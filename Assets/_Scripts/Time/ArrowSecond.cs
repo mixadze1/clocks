@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SecondArrow : MonoBehaviour
+public class ArrowSecond : MonoBehaviour
 {
     [SerializeField] private Transform _objectSecond;
     [SerializeField] private Clock _realTime;
