@@ -1,10 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class EveryHourRequest : MonoBehaviour
+public class HourRequest : MonoBehaviour
 {
-    [SerializeField] private RequestRealTime requestTime;
-    public Coroutine PrepareRoutine;
+    [SerializeField] private RequestTimeStart requestTime;
+    private Coroutine PrepareRoutine;
+
+    public void EveryHourRequest()
+    {
+        if (PrepareRoutine != null)
+        {
+            StopCoroutine(PrepareRoutine);
+        }
+        PrepareRoutine = StartCoroutine(OneHour());
+    }
 
     public IEnumerator OneHour()
     {

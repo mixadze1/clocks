@@ -4,86 +4,92 @@ using MyTime;
 
 public class Clock : MonoBehaviour
 {
-    [SerializeField] private RequestRealTime requestRealTime;
-    [SerializeField] private DigitalClock digitalClock;
 
+    [SerializeField] private DigitalClock digitalClock;
     [SerializeField] private HourArrow hourArrow;
     [SerializeField] private MinuteArrow minuteArrow;
     [SerializeField] private SecondArrow secondArrow;
 
     [SerializeField] private AlarmActivate alarmActivate;
-    [SerializeField] private AlarmController alarmController;
-    [HideInInspector] protected int hour;
-    [HideInInspector] protected int minute;
-    [HideInInspector] protected int second;
+    [SerializeField] private Alarm alarmController;
+    [HideInInspector] protected int _hour;
+    [HideInInspector] protected int _minute;
+    [HideInInspector] protected int _second;
 
     private int hourStep = 23;
     private int minuteStep = 59;
     
     private Coroutine prepareRoutine;
-    public int Hour => hour;
-    public int Minute => minute;
-    public int Second => second;
+    public int Hour => _hour;
+    public int Minute => _minute;
+    public int Second => _second;
 
-    private void Start()
+    public void Init()
     {
-        requestRealTime.Init();
-        prepareRoutine = StartCoroutine(WaitingSecond());
+        prepareRoutine = StartCoroutine(MoveClockEverySecond());
+    }
+
+    public void InitTime(int hour, int minute, int second)
+    {
+        _second = second;
+        _minute = minute;
+        _hour = hour;
     }
 
     private void Update()
     {
-        if (PlayerPrefs.GetInt(MyTime.Alarm.HOUR) == Hour &&
-            PlayerPrefs.GetInt(MyTime.Alarm.MINUTE) == Minute && 
-            alarmController.AlarmActive)
+        if (IsAlarm())
         {
-            alarmActivate.ActivateAlerm();
+            alarmActivate.ActivateAlerm(); 
         }
-    }
-    public void TimeCheck()
-    {
-        if (hour != PlayerPrefs.GetInt(MyTime.Real.HOUR) || minute != PlayerPrefs.GetInt(MyTime.Real.MINUTE)||
-            second != PlayerPrefs.GetInt(MyTime.Real.SECOND))
-        {
-            hour = PlayerPrefs.GetInt(MyTime.Real.HOUR);
-            minute = PlayerPrefs.GetInt(MyTime.Real.MINUTE);
-            second = PlayerPrefs.GetInt(MyTime.Real.SECOND);
-        }
+
     }
 
-    IEnumerator WaitingSecond()
+    private bool IsAlarm()
+    {
+        if (PlayerPrefs.GetInt(MyTime.AlarmSave.HOUR) == Hour &&
+          PlayerPrefs.GetInt(MyTime.AlarmSave.MINUTE) == Minute &&
+          alarmController.AlarmActive)
+        {
+            alarmController.AlarmActive = false;
+            return true;
+        }
+        return false;
+    }
+
+    private IEnumerator MoveClockEverySecond()
     {
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            MoveTime();
+            Move();
         }
     }
 
-    public void MoveTime()
+    public void Move()
     {
-        if (second == minuteStep)
+        if (_second == minuteStep)
         {
-            second = 0;
-            minute++;
+            _second = 0;
+            _minute++;
         }
         else
         {
-            second++;
+            _second++;
         }
 
-        if (minute == minuteStep)
+        if (_minute == minuteStep)
         {
-            minute = 0;
-            hour++;
+            _minute = 0;
+            _hour++;
         }
-        if (hour > hourStep)
+        if (_hour > hourStep)
         {
-            hour = 0;
+            _hour = 0;
         }
-        digitalClock.MoveTime();
-        hourArrow.MoveTime();
-        minuteArrow.MoveTime();
         secondArrow.MoveTime();
+        minuteArrow.MoveTime();
+        hourArrow.MoveTime();
+        digitalClock.MoveTime();  
     }
 }

@@ -2,16 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-using MyTime;
 
-public class RequestRealTime : MonoBehaviour
+public class RequestTimeStart : MonoBehaviour
 {
     [SerializeField] private Clock clock;
-    [SerializeField] private EveryHourRequest hourRequest;
-    Response response;
+    [SerializeField] private HourRequest hourRequest;
 
     private string urlFirst = "http://worldtimeapi.org/api/timezone/Europe/Moscow";
     private string urlSecond = "https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Moscow";
+    private Response response;
 
     public Coroutine PrepareRoutine;
 
@@ -22,8 +21,9 @@ public class RequestRealTime : MonoBehaviour
     public string UrlFirst => urlFirst;
     public string UrlSecond => urlSecond;
 
-    public void Init()
+    public void Start()
     {
+        clock.Init();
         PrepareRoutine = StartCoroutine(RequestTime(urlFirst,urlSecond));
     }
 
@@ -48,24 +48,8 @@ public class RequestRealTime : MonoBehaviour
     {
         response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
         var dateTime = DateTime.Parse(response.datetime);
-        SaveTime(dateTime.Hour, dateTime.Minute, dateTime.Second); 
-        EveryHourRequest();
+        clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
+        hourRequest.EveryHourRequest();
     }
 
-    private void EveryHourRequest()
-    {
-        if (hourRequest.PrepareRoutine != null)
-        {
-            hourRequest.StopCoroutine(hourRequest.PrepareRoutine);
-        }
-        hourRequest.PrepareRoutine = StartCoroutine(hourRequest.OneHour());
-    }
-
-    private void SaveTime(int hour, int minute, int second)
-    {
-        PlayerPrefs.SetInt(MyTime.Real.SECOND, second);
-        PlayerPrefs.SetInt(MyTime.Real.MINUTE, minute);
-        PlayerPrefs.SetInt(MyTime.Real.HOUR, hour);
-        clock.TimeCheck();
-    }
 }

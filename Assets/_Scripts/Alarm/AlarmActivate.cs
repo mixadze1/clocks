@@ -4,7 +4,7 @@ public class AlarmActivate : MonoBehaviour
 {
     [SerializeField] private GameObject alarm;
     [SerializeField] private GameObject alarmNotification;
-    [SerializeField] private AlarmController alarmController;
+    [SerializeField] private Alarm alarmController;
 
     public void OffAlerm()
     {
