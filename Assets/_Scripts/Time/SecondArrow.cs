@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class SecondArrow : MonoBehaviour
 {
-    [SerializeField] private Transform objectSecond;
-    [SerializeField] private Clock realTime;
+    [SerializeField] private Transform _objectSecond;
+    [SerializeField] private Clock _realTime;
 
-    private float eulerSecond = 6;
+    private float _eulerSecond = 6;
 
     public void MoveTime()
     {
-        objectSecond.rotation = Quaternion.Euler(0, 0, -realTime.Second * eulerSecond);
+        _objectSecond.rotation = Quaternion.Euler(0, 0, -_realTime.Second * _eulerSecond);
     }
 }
 

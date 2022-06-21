@@ -5,10 +5,10 @@ using MyTime;
 public class Alarm : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshProUGUI hourTextAlerm;
-    [SerializeField] private TextMeshProUGUI minuteTextAlerm;
+    [SerializeField] private TextMeshProUGUI _hourTextAlerm;
+    [SerializeField] private TextMeshProUGUI _minuteTextAlerm;
 
-    [SerializeField] private GameObject alarm;
+    [SerializeField] private GameObject _alarm;
 
     private int minuteStep = 59;
     private int hourStep = 23;
@@ -19,44 +19,41 @@ public class Alarm : MonoBehaviour
    
     private bool alarmActive;
     public bool AlarmActive { get => alarmActive; set => alarmActive = value; }
-/*    public int HourAlarm => hourAlarm;
-    public int MinuteAlarm => minuteAlarm;*/
+    public int HourAlarm => hourAlarm;
+    public int MinuteAlarm => minuteAlarm;
 
     public void AcceptAlerm()
+    {    
+        SetAlarm();
+        ChangeTextAlarm();
+    }
+
+    private void SetAlarm()
     {
-        alarm.SetActive(true);
+        _alarm.SetActive(true);
         alarmActive = true;
         minuteAlarm = PlayerPrefs.GetInt((MyTime.AlarmSave.MINUTE));
         hourAlarm = PlayerPrefs.GetInt((MyTime.AlarmSave.HOUR));
-
-        SetAlarm();
-        
-        ChangeTextAlarm();
-    }
-    private void SetAlarm()
-    {
-        PlayerPrefs.SetInt(MyTime.AlarmAccept.MINUTE, minuteAlarm);
-        PlayerPrefs.SetInt(MyTime.AlarmAccept.HOUR, hourAlarm);
     }
 
     private void ChangeTextAlarm()
     {
         if (hourAlarm < twoDigitNumber)
         {
-            hourTextAlerm.text = "0" + hourAlarm.ToString();
+            _hourTextAlerm.text = "0" + hourAlarm.ToString();
         }
         else
         {
-            hourTextAlerm.text = hourAlarm.ToString();
+            _hourTextAlerm.text = hourAlarm.ToString();
         }
 
         if (minuteAlarm < twoDigitNumber)
         {
-            minuteTextAlerm.text = "0" + minuteAlarm.ToString();
+            _minuteTextAlerm.text = "0" + minuteAlarm.ToString();
         }
         else
         {
-            minuteTextAlerm.text = minuteAlarm.ToString();
+            _minuteTextAlerm.text = minuteAlarm.ToString();
         }
     }
 }

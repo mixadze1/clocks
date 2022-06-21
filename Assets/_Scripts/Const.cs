@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace MyTime
-{
+{   
     public class AlarmSave
     {
         public const string HOUR = "TimeHour";
         public const string MINUTE = "TimeMin";
-    }
-    public class AlarmAccept
-    {
-        public const string HOUR = "HourAlarm";
-        public const string MINUTE = "MinAlarm";
     }
 }
 

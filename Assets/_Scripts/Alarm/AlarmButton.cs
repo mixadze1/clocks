@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class AlarmButton : MonoBehaviour
 {
-    [SerializeField] protected TextMeshProUGUI hourText;
-    [SerializeField] protected TextMeshProUGUI minutesText;
+    [SerializeField] protected TextMeshProUGUI _hourText;
+    [SerializeField] protected TextMeshProUGUI _minutesText;
 
     private int minuteStep = 59;
     private int hourStep = 23;
@@ -27,11 +27,11 @@ public class AlarmButton : MonoBehaviour
         }
         if (hourAlarm < twoDigitNumber)
         {
-            hourText.text = "0" + hourAlarm.ToString();
+            _hourText.text = "0" + hourAlarm.ToString();
         }
         else
         {
-            hourText.text = hourAlarm.ToString();
+            _hourText.text = hourAlarm.ToString();
         }
         PlayerPrefs.SetInt(MyTime.AlarmSave.HOUR, hourAlarm);
 
@@ -50,11 +50,11 @@ public class AlarmButton : MonoBehaviour
 
         if (hourAlarm < twoDigitNumber)
         {
-            hourText.text = "0" + hourAlarm.ToString();
+            _hourText.text = "0" + hourAlarm.ToString();
         }
         else
         {
-            hourText.text = hourAlarm.ToString();
+            _hourText.text = hourAlarm.ToString();
         }
         PlayerPrefs.SetInt(MyTime.AlarmSave.HOUR, hourAlarm);
     }
@@ -72,11 +72,11 @@ public class AlarmButton : MonoBehaviour
         
         if (minuteAlarm < twoDigitNumber)
         {
-            minutesText.text = "0" + minuteAlarm.ToString();
+            _minutesText.text = "0" + minuteAlarm.ToString();
         }
         else
         {
-            minutesText.text = minuteAlarm.ToString();
+            _minutesText.text = minuteAlarm.ToString();
         }
         PlayerPrefs.SetInt(MyTime.AlarmSave.MINUTE, minuteAlarm);
     }
@@ -94,11 +94,11 @@ public class AlarmButton : MonoBehaviour
 
         if (minuteAlarm < twoDigitNumber)
         {
-            minutesText.text = "0" + minuteAlarm.ToString();
+            _minutesText.text = "0" + minuteAlarm.ToString();
         }
         else
         {
-            minutesText.text = minuteAlarm.ToString();
+            _minutesText.text = minuteAlarm.ToString();
         }
         PlayerPrefs.SetInt(MyTime.AlarmSave.MINUTE, minuteAlarm);
     }

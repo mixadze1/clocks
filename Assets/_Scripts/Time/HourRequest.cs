@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class HourRequest : MonoBehaviour
 {
-    [SerializeField] private RequestTimeStart requestTime;
-    private Coroutine PrepareRoutine;
+    [SerializeField] private RequestTimeStart _requestTime;
+    private Coroutine _PrepareRoutine;
 
     public void EveryHourRequest()
     {
-        if (PrepareRoutine != null)
+        if (_PrepareRoutine != null)
         {
-            StopCoroutine(PrepareRoutine);
+            StopCoroutine(_PrepareRoutine);
         }
-        PrepareRoutine = StartCoroutine(OneHour());
+        _PrepareRoutine = StartCoroutine(OneHour());
     }
 
     public IEnumerator OneHour()
@@ -23,7 +23,7 @@ public class HourRequest : MonoBehaviour
             yield return new WaitForSecondsRealtime(1);
             hour++;
         }
-        requestTime.StopCoroutine(requestTime.PrepareRoutine);
-        requestTime.PrepareRoutine = StartCoroutine(requestTime.RequestTime(requestTime.UrlFirst, requestTime.UrlSecond));
+        _requestTime.StopCoroutine(_requestTime.PrepareRoutine);
+        _requestTime.PrepareRoutine = StartCoroutine(_requestTime.RequestTime(_requestTime.UrlFirst, _requestTime.UrlSecond));
     }
 }

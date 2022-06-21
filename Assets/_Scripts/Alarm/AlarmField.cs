@@ -7,9 +7,9 @@ using MyTime;
 
 public class AlarmField : MonoBehaviour
 {
-    [SerializeField] private Text fieldTextHour;
-    [SerializeField] private Text fieldTextMinute;
-    [SerializeField] private GameObject errorOut;
+    [SerializeField] private Text _fieldTextHour;
+    [SerializeField] private Text _fieldTextMinute;
+    [SerializeField] private GameObject _errorOut;
 
     private int minuteStep = 59;
     private int hourStep = 23;
@@ -22,15 +22,15 @@ public class AlarmField : MonoBehaviour
     {
         try
         {
-            int checkInt = int.Parse(fieldTextHour.text);
+            int checkInt = int.Parse(_fieldTextHour.text);
         }
         catch (System.Exception)
         {
-            errorOut.SetActive(true);
+            _errorOut.SetActive(true);
             return;
         }
 
-        int textInt = int.Parse(fieldTextHour.text);
+        int textInt = int.Parse(_fieldTextHour.text);
         hourAlarm = textInt;
         
 
@@ -39,28 +39,28 @@ public class AlarmField : MonoBehaviour
             PlayerPrefs.SetInt(MyTime.AlarmSave.HOUR, hourAlarm);
             return;
         }
-        errorOut.SetActive(true);
+        _errorOut.SetActive(true);
     }
 
     public void ClickChangeFieldMinute()
     {
         try
         {
-            int checkInt = int.Parse(fieldTextMinute.text);
+            int checkInt = int.Parse(_fieldTextMinute.text);
         }
         catch (System.Exception)
         {
-            errorOut.SetActive(true);
+            _errorOut.SetActive(true);
             return;
         }
 
-        int textInt = int.Parse(fieldTextMinute.text);
+        int textInt = int.Parse(_fieldTextMinute.text);
         minuteAlarm = textInt;
         if (minuteAlarm >= 0 && minuteAlarm <= minuteStep)
         {
             PlayerPrefs.SetInt(MyTime.AlarmSave.MINUTE, minuteAlarm);
             return;
         }
-        errorOut.SetActive(true);
+        _errorOut.SetActive(true);
     }
 }

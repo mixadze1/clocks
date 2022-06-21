@@ -5,26 +5,22 @@ using UnityEngine.Networking;
 
 public class RequestTimeStart : MonoBehaviour
 {
-    [SerializeField] private Clock clock;
-    [SerializeField] private HourRequest hourRequest;
+    [SerializeField] private Clock _clock;
+    [SerializeField] private HourRequest _hourRequest;
 
-    private string urlFirst = "http://worldtimeapi.org/api/timezone/Europe/Moscow";
-    private string urlSecond = "https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Moscow";
-    private Response response;
+    private string _urlFirst = "http://worldtimeapi.org/api/timezone/Europe/Moscow";
+    private string _urlSecond = "https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Moscow";
+    private Response _response;
 
     public Coroutine PrepareRoutine;
 
-    [HideInInspector] public int RealHour;
-    [HideInInspector] public int RealMinute;
-    [HideInInspector] public int RealSecond;
-
-    public string UrlFirst => urlFirst;
-    public string UrlSecond => urlSecond;
+    public string UrlFirst => _urlFirst;
+    public string UrlSecond => _urlSecond;
 
     public void Start()
     {
-        clock.Init();
-        PrepareRoutine = StartCoroutine(RequestTime(urlFirst,urlSecond));
+        _clock.Init();
+        PrepareRoutine = StartCoroutine(RequestTime(_urlFirst,_urlSecond));
     }
 
     public IEnumerator RequestTime(string url, string url2)
@@ -34,22 +30,22 @@ public class RequestTimeStart : MonoBehaviour
 
         if (webReq != null)
         {
-            ParseTime(webReq);
+            ParseRequest(webReq);
         }
         else
         {
             UnityWebRequest webReq2 = UnityWebRequest.Get(url2);
             yield return webReq2.SendWebRequest();
-            ParseTime(webReq);
+            ParseRequest(webReq);
         }
     }
 
-    private void ParseTime(UnityWebRequest webReq)
+    private void ParseRequest(UnityWebRequest webReq)
     {
-        response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
-        var dateTime = DateTime.Parse(response.datetime);
-        clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
-        hourRequest.EveryHourRequest();
+        _response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
+        var dateTime = DateTime.Parse(_response.datetime);
+        _clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
+        _hourRequest.EveryHourRequest();
     }
 
 }

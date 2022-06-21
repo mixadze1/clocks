@@ -5,13 +5,13 @@ using MyTime;
 public class Clock : MonoBehaviour
 {
 
-    [SerializeField] private DigitalClock digitalClock;
-    [SerializeField] private HourArrow hourArrow;
-    [SerializeField] private MinuteArrow minuteArrow;
-    [SerializeField] private SecondArrow secondArrow;
+    [SerializeField] private DigitalClock _digitalClock;
+    [SerializeField] private HourArrow _hourArrow;
+    [SerializeField] private MinuteArrow _minuteArrow;
+    [SerializeField] private SecondArrow _secondArrow;
 
-    [SerializeField] private AlarmActivate alarmActivate;
-    [SerializeField] private Alarm alarmController;
+    [SerializeField] private AlarmActivate _alarmActivate;
+    [SerializeField] private Alarm _alarm;
     [HideInInspector] protected int _hour;
     [HideInInspector] protected int _minute;
     [HideInInspector] protected int _second;
@@ -40,18 +40,18 @@ public class Clock : MonoBehaviour
     {
         if (IsAlarm())
         {
-            alarmActivate.ActivateAlerm(); 
+            _alarmActivate.ActivateAlerm(); 
         }
 
     }
 
     private bool IsAlarm()
     {
-        if (PlayerPrefs.GetInt(MyTime.AlarmSave.HOUR) == Hour &&
-          PlayerPrefs.GetInt(MyTime.AlarmSave.MINUTE) == Minute &&
-          alarmController.AlarmActive)
+        if (_alarm.HourAlarm == Hour &&
+          _alarm.MinuteAlarm == Minute &&
+          _alarm.AlarmActive)
         {
-            alarmController.AlarmActive = false;
+            _alarm.AlarmActive = false;
             return true;
         }
         return false;
@@ -87,9 +87,9 @@ public class Clock : MonoBehaviour
         {
             _hour = 0;
         }
-        secondArrow.MoveTime();
-        minuteArrow.MoveTime();
-        hourArrow.MoveTime();
-        digitalClock.MoveTime();  
+        _secondArrow.MoveTime();
+        _minuteArrow.MoveTime();
+        _hourArrow.MoveTime();
+        _digitalClock.MoveTime();  
     }
 }

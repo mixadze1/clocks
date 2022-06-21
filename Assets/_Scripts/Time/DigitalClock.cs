@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class DigitalClock : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI hourText;
-    [SerializeField] private TextMeshProUGUI minutesText;
-    [SerializeField] private TextMeshProUGUI secondText;
+    [SerializeField] private TextMeshProUGUI _hourText;
+    [SerializeField] private TextMeshProUGUI _minutesText;
+    [SerializeField] private TextMeshProUGUI _secondText;
 
-    [SerializeField] private Clock clock;
+    [SerializeField] private Clock _clock;
 
-    private int twoDigitNumber = 10;
+    private int _twoDigitNumber = 10;
 
     public void MoveTime()
     {
@@ -20,38 +20,38 @@ public class DigitalClock : MonoBehaviour
 
     private void MoveHour()
     {
-        if (clock.Hour < twoDigitNumber)
+        if (_clock.Hour < _twoDigitNumber)
         {
-            hourText.text = "0" + clock.Hour.ToString();
+            _hourText.text = "0" + _clock.Hour.ToString();
         }
         else
         {
-            hourText.text = clock.Hour.ToString();
+            _hourText.text = _clock.Hour.ToString();
         } 
     }
 
     private void MoveMinute()
     {
-        if (clock.Minute < twoDigitNumber)
+        if (_clock.Minute < _twoDigitNumber)
         { 
-            minutesText.text = "0" + clock.Minute.ToString(); 
+            _minutesText.text = "0" + _clock.Minute.ToString(); 
         }
         
         else
         {
-            minutesText.text = clock.Minute.ToString();
+            _minutesText.text = _clock.Minute.ToString();
         }
     }
 
     private void MoveSecond()
     {
-        if (clock.Second < twoDigitNumber)
+        if (_clock.Second < _twoDigitNumber)
         {
-            secondText.text = "0" + clock.Second.ToString();
+            _secondText.text = "0" + _clock.Second.ToString();
         }
         else
         {
-            secondText.text = clock.Second.ToString();
+            _secondText.text = _clock.Second.ToString();
         }
            
     }

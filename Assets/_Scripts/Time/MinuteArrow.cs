@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class MinuteArrow : MonoBehaviour
 {
-    [SerializeField] private Transform objectMin;
-    [SerializeField] private Clock realTime;
+    [SerializeField] private Transform _objectMin;
+    [SerializeField] private Clock _realTime;
 
-    private float eulerMinutes = 6;
+    private float _eulerMinutes = 6;
 
     public  void MoveTime()
     {
-        objectMin.rotation = Quaternion.Euler(0, 0, -realTime.Minute * eulerMinutes);
+        _objectMin.rotation = Quaternion.Euler(0, 0, -_realTime.Minute * _eulerMinutes);
     }   
 }
