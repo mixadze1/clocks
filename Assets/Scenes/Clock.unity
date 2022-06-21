@@ -1431,7 +1431,7 @@ GameObject:
   - component: {fileID: 410563284}
   - component: {fileID: 410563282}
   m_Layer: 0
-  m_Name: RequestRealTime
+  m_Name: RequestTimeStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1452,9 +1452,8 @@ MonoBehaviour:
   _clock: {fileID: 295034459}
   _hourRequest: {fileID: 2017104936}
   _urls:
-  - http://worldclockapi.com/api/json/est/now
-  - http://worldclockapi.com/api/json/utc/now
   - http://worldtimeapi.org/api/timezone/Europe/Moscow
+  - http://worldclockapi.com/api/json/est/now
   - https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Moscow
 --- !u!4 &410563284
 Transform:

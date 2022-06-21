@@ -10,10 +10,7 @@ public class Alarm : MonoBehaviour
 
     [SerializeField] private GameObject _alarm;
 
-    private int minuteStep = 59;
-    private int hourStep = 23;
     private int twoDigitNumber = 10;
-
     private int hourAlarm;
     private int minuteAlarm;
    

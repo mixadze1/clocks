@@ -10,6 +10,7 @@ public class RequestTimeStart : MonoBehaviour
     [SerializeField] private HourRequest _hourRequest;
 
     [SerializeField] private List<string> _urls;
+
     private Response _response;
 
     public Coroutine PrepareRoutine;
@@ -39,9 +40,8 @@ public class RequestTimeStart : MonoBehaviour
     private void ParseRequest(UnityWebRequest webReq)
     {
         _response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
-        var dateTime = DateTime.Parse(_response.currentDateTime);
+        var dateTime = DateTime.Parse(_response.datetime);
         _clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
         _hourRequest.EveryHourRequest();
     }
-
 }
