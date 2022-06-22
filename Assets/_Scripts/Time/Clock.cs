@@ -12,9 +12,10 @@ public class Clock : MonoBehaviour
 
     [SerializeField] private AlarmActivate _alarmActivate;
     [SerializeField] private Alarm _alarm;
-    [HideInInspector] protected int _hour;
-    [HideInInspector] protected int _minute;
-    [HideInInspector] protected int _second;
+
+    private int _hour;
+    private int _minute;
+    private int _second;
 
     private int hourStep = 23;
     private int minuteStep = 59;
