@@ -5,6 +5,7 @@ public class HourRequest : MonoBehaviour
 {
     [SerializeField] private RequestTimeStart _requestTime;
     private Coroutine _PrepareRoutine;
+    private float _hour = 3600;
 
     public void EveryHourRequest()
     {
@@ -17,11 +18,11 @@ public class HourRequest : MonoBehaviour
 
     private IEnumerator OneHour()
     {
-        float hour = 0;
-        while (hour <= 3600)
+        float count = 0;
+        while (count <= _hour)
         {
             yield return new WaitForSecondsRealtime(1);
-            hour++;
+            count++;
         }
         _requestTime.StopCoroutine(_requestTime.PrepareRoutine);
         _requestTime.PrepareRoutine = StartCoroutine(_requestTime.RequestTime(_requestTime.Urls));

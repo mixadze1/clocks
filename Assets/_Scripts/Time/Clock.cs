@@ -17,8 +17,8 @@ public class Clock : MonoBehaviour
     private int _minute;
     private int _second;
 
-    private int hourStep = 23;
-    private int minuteStep = 59;
+    private int _hourStep = 23;
+    private int _minuteStep = 59;
     
     private Coroutine prepareRoutine;
     public int Hour => _hour;
@@ -64,7 +64,7 @@ public class Clock : MonoBehaviour
 
     private void Move()
     {
-        if (_second == minuteStep)
+        if (_second == _minuteStep)
         {
             _second = 0;
             _minute++;
@@ -74,12 +74,12 @@ public class Clock : MonoBehaviour
             _second++;
         }
 
-        if (_minute == minuteStep)
+        if (_minute == _minuteStep)
         {
             _minute = 0;
             _hour++;
         }
-        if (_hour > hourStep)
+        if (_hour > _hourStep)
         {
             _hour = 0;
         }
