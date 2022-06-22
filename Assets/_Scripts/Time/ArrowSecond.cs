@@ -7,9 +7,9 @@ public class ArrowSecond : MonoBehaviour
 
     private float _eulerSecond = 6;
 
-    public void MoveTime()
+    public Quaternion MoveTime()
     {
-        _objectSecond.rotation = Quaternion.Euler(0, 0, -_realTime.Second * _eulerSecond);
+      return _objectSecond.rotation = Quaternion.Euler(0, 0, -_realTime.Second * _eulerSecond);
     }
 }
 

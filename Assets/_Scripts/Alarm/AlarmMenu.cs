@@ -60,7 +60,6 @@ public class AlarmMenu : MonoBehaviour
     public void BackToClock()
     {
         alarmMenu.SetActive(false);
-
     }
 
     public void InCorrect()

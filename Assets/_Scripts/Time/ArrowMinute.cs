@@ -7,8 +7,8 @@ public class ArrowMinute : MonoBehaviour
 
     private float _eulerMinutes = 6;
 
-    public  void MoveTime()
+    public Quaternion MoveTime()
     {
-        _objectMin.rotation = Quaternion.Euler(0, 0, -_realTime.Minute * _eulerMinutes);
+        return _objectMin.rotation = Quaternion.Euler(0, 0, -_realTime.Minute * _eulerMinutes);
     }   
 }

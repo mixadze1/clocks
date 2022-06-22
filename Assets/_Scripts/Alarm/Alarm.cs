@@ -10,14 +10,14 @@ public class Alarm : MonoBehaviour
 
     [SerializeField] private GameObject _alarm;
 
-    private int twoDigitNumber = 10;
-    private int hourAlarm;
-    private int minuteAlarm;
+    private int _twoDigitNumber = 10;
+    private int _hourAlarm;
+    private int _minuteAlarm;
    
-    private bool alarmActive;
-    public bool AlarmActive { get => alarmActive; set => alarmActive = value; }
-    public int HourAlarm => hourAlarm;
-    public int MinuteAlarm => minuteAlarm;
+    private bool _alarmActive;
+    public bool AlarmActive { get => _alarmActive; set => _alarmActive = value; }
+    public int HourAlarm => _hourAlarm;
+    public int MinuteAlarm => _minuteAlarm;
 
     public void AcceptAlerm()
     {    
@@ -28,29 +28,29 @@ public class Alarm : MonoBehaviour
     private void SetAlarm()
     {
         _alarm.SetActive(true);
-        alarmActive = true;
-        minuteAlarm = PlayerPrefs.GetInt((MyTime.AlarmSave.MINUTE));
-        hourAlarm = PlayerPrefs.GetInt((MyTime.AlarmSave.HOUR));
+        _alarmActive = true;
+        _minuteAlarm = PlayerPrefs.GetInt((MyTime.AlarmSave.MINUTE));
+        _hourAlarm = PlayerPrefs.GetInt((MyTime.AlarmSave.HOUR));
     }
 
     private void ChangeTextAlarm()
     {
-        if (hourAlarm < twoDigitNumber)
+        if (_hourAlarm < _twoDigitNumber)
         {
-            _hourTextAlerm.text = "0" + hourAlarm.ToString();
+            _hourTextAlerm.text = "0" + _hourAlarm.ToString();
         }
         else
         {
-            _hourTextAlerm.text = hourAlarm.ToString();
+            _hourTextAlerm.text = _hourAlarm.ToString();
         }
 
-        if (minuteAlarm < twoDigitNumber)
+        if (_minuteAlarm < _twoDigitNumber)
         {
-            _minuteTextAlerm.text = "0" + minuteAlarm.ToString();
+            _minuteTextAlerm.text = "0" + _minuteAlarm.ToString();
         }
         else
         {
-            _minuteTextAlerm.text = minuteAlarm.ToString();
+            _minuteTextAlerm.text = _minuteAlarm.ToString();
         }
     }
 }

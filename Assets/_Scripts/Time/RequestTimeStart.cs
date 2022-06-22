@@ -17,9 +17,8 @@ public class RequestTimeStart : MonoBehaviour
 
     public List<string> Urls => _urls;
 
-    public void Start()
+    private void Start()
     {
-        _clock.Init();
         PrepareRoutine = StartCoroutine(RequestTime(_urls));
     }
 
@@ -40,8 +39,8 @@ public class RequestTimeStart : MonoBehaviour
     private void ParseRequest(UnityWebRequest webReq)
     {
         _response = JsonUtility.FromJson<Response>(webReq.downloadHandler.text);
-        var dateTime = DateTime.Parse(_response.datetime);
-        _clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
+        var dateTime = DateTime.Parse(_response.datetime);      
         _hourRequest.EveryHourRequest();
+        _clock.InitTime(dateTime.Hour, dateTime.Minute, dateTime.Second);
     }
 }

@@ -15,7 +15,7 @@ public class HourRequest : MonoBehaviour
         _PrepareRoutine = StartCoroutine(OneHour());
     }
 
-    public IEnumerator OneHour()
+    private IEnumerator OneHour()
     {
         float hour = 0;
         while (hour <= 3600)

@@ -23,17 +23,12 @@ public class Clock : MonoBehaviour
     public int Hour => _hour;
     public int Minute => _minute;
     public int Second => _second;
-
-    public void Init()
-    {
-        prepareRoutine = StartCoroutine(MoveClockEverySecond());
-    }
-
     public void InitTime(int hour, int minute, int second)
     {
         _second = second;
         _minute = minute;
-        _hour = hour;
+        _hour = hour; 
+        prepareRoutine = StartCoroutine(MoveClockEverySecond());
     }
 
     private void Update()
@@ -66,7 +61,7 @@ public class Clock : MonoBehaviour
         }
     }
 
-    public void Move()
+    private void Move()
     {
         if (_second == minuteStep)
         {

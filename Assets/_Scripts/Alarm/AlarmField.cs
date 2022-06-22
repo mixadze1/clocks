@@ -11,11 +11,11 @@ public class AlarmField : MonoBehaviour
     [SerializeField] private Text _fieldTextMinute;
     [SerializeField] private GameObject _errorOut;
 
-    private int minuteStep = 59;
-    private int hourStep = 23;
+    private int _minuteStep = 59;
+    private int _hourStep = 23;
 
-    private int hourAlarm;
-    private int minuteAlarm;
+    private int _hourAlarm;
+    private int _minuteAlarm;
 
     public void ClickChangeFieldHour()
     {
@@ -30,12 +30,12 @@ public class AlarmField : MonoBehaviour
         }
 
         int textInt = int.Parse(_fieldTextHour.text);
-        hourAlarm = textInt;
+        _hourAlarm = textInt;
         
 
-        if (hourAlarm >= 0 && hourAlarm <= hourStep)
+        if (_hourAlarm >= 0 && _hourAlarm <= _hourStep)
         {
-            PlayerPrefs.SetInt(MyTime.AlarmSave.HOUR, hourAlarm);
+            PlayerPrefs.SetInt(MyTime.AlarmSave.HOUR, _hourAlarm);
             return;
         }
         _errorOut.SetActive(true);
@@ -54,10 +54,10 @@ public class AlarmField : MonoBehaviour
         }
 
         int textInt = int.Parse(_fieldTextMinute.text);
-        minuteAlarm = textInt;
-        if (minuteAlarm >= 0 && minuteAlarm <= minuteStep)
+        _minuteAlarm = textInt;
+        if (_minuteAlarm >= 0 && _minuteAlarm <= _minuteStep)
         {
-            PlayerPrefs.SetInt(MyTime.AlarmSave.MINUTE, minuteAlarm);
+            PlayerPrefs.SetInt(MyTime.AlarmSave.MINUTE, _minuteAlarm);
             return;
         }
         _errorOut.SetActive(true);

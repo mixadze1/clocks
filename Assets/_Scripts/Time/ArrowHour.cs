@@ -6,8 +6,8 @@ public class ArrowHour : MonoBehaviour
     [SerializeField] private Clock _realTime;
     private float _eulerHour = 30;
 
-    public void MoveTime()
+    public Quaternion MoveTime()
     {
-        _objectHour.rotation = Quaternion.Euler(0, 0, -_realTime.Hour * _eulerHour);
+        return _objectHour.rotation = Quaternion.Euler(0, 0, -_realTime.Hour * _eulerHour);
     }
 }
